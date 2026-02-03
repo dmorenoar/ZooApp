@@ -1,0 +1,33 @@
+1. EL "CANDADO" ESTÁTICO (Compartido y protegido)
+private static readonly Random _random = new Random();
+
+// 2. EL CONTADOR GLOBAL (Solo la clase Animal lo altera)
+public static int TotalAnimals { get; private set; } = 0;
+
+// 3. IDENTIDAD INMUTABLE (La verdadera "propiedad final" de datos)
+public int Id { get; } // Solo-get: grabado en piedra en el constructor
+
+// 4. EL NOMBRE (Flexible solo al nacer)
+public string Name { get; init; }
+
+// 5. LÓGICA DE NEGOCIO (Validada con Backing Field)
+private double _weight;
+public double Weight
+{
+    get => _weight;
+    set => _weight = value > 0 ? value : 1.0;
+}
+
+// 6. PROPIEDAD CALCULADA (Expression-bodied)
+public bool IsHeavy => Weight > 500;
+
+
+//Entendiento los términos de herencia en C#
+
+abstract: "Hijo, tienes que hacer esto, pero no te digo cómo".
+
+virtual: "Hijo, yo lo hago así, pero si quieres puedes hacerlo diferente".
+
+override: "Papá, estoy haciendo lo que me pediste".
+
+sealed override: "Hijo, yo lo hago así, y te prohíbo hacerlo diferente".
