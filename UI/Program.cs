@@ -3,11 +3,14 @@ using Zoo.Core.Interfaces;
 using Zoo.Core.Models;
 using ZooApp.Core.Interfaces;
 using ZooApp.Tools;
+using ZooApp.UI;
 
 namespace Zoo.UI
 {
     public class Program
     {
+        
+        
         public static void Main()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -16,11 +19,24 @@ namespace Zoo.UI
 
             try
             {
-                Lion simba = Utils.BuildLionWithValidation();
+                Console.WriteLine(UIConfig.Prompt.PromptWelcome);
+                Console.WriteLine(UIConfig.Design.Divider);
+
+                Console.WriteLine(UIConfig.Prompt.PromptLion);
+                string name = Utils.ReadString(UIConfig.Input.InputName, UIConfig.ValidationError.InvalidInputName, 5);
+                int age = Utils.ReadInt(UIConfig.Input.InputAge, UIConfig.ValidationError.InvalidInputAge);
+                double weight = Utils.ReadDouble(UIConfig.Input.InputWeight, UIConfig.ValidationError.InvalidInputWeight);
+                bool claws = Utils.ReadBool(UIConfig.Input.InputHasSharpClaws, UIConfig.ValidationError.InvalidInputHasSharpClaws);
+
+                Lion simba = new Lion(name, age, weight, claws);
+
+                Console.WriteLine(UIConfig.SuccessMessage.AnimalCreated);
 
                 Lion scar = new Lion("Scar", 5, 190.5);
 
-                Console.WriteLine(simba.IsOverWeight);
+
+
+                //Console.WriteLine(simba.IsOverWeight);
 
                 string inputNickName;
 
