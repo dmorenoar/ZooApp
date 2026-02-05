@@ -13,9 +13,9 @@ namespace Zoo.Core.Models
         private const string Sound = "says: ROARRR!";
         public bool HasSharpClaws { get; set; }
         public bool IsHungry { get; set; } = true;
-        public DateTime lastVaccinateDate { get ; set; }
-
-        public Lion(string name, int age, double weight, bool hasSharpClaws = true): base(name,age,weight, SpeciesName)
+        public DateTime? LastVaccinateDate { get ; set; }
+  
+        public Lion(string name, int age, double weight, string? SpecialCare = null, bool hasSharpClaws = true): base(name,age,weight, SpeciesName)
         {
             HasSharpClaws = hasSharpClaws;
         }
@@ -56,10 +56,11 @@ namespace Zoo.Core.Models
 
         public void Vaccinate(string vaccine)
         {
-            lastVaccinateDate = DateTime.Now;
-            Console.WriteLine($"{Prompt} {Name} is vaccinated against {vaccine} right now {lastVaccinateDate}.");
+            LastVaccinateDate = DateTime.Now;
+            Console.WriteLine($"{Prompt} {Name} is vaccinated against {vaccine} right now {LastVaccinateDate}.");
         }
 
+      
 
         // Sealed method: The Lion class cannot override the Breath method from Mammal class
         /* public override void Breath()

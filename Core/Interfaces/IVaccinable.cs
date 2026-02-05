@@ -7,6 +7,7 @@ namespace ZooApp.Core.Interfaces
     public interface IVaccinable
     {
         void Vaccinate(string vaccine);
-        DateTime lastVaccinateDate { get; set; }
+        DateTime? LastVaccinateDate { get; set; }
+        bool NeedsVaccination => LastVaccinateDate is not DateTime date || (DateTime.Now - date).TotalDays > 30;
     }
 }

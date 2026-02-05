@@ -6,6 +6,9 @@ namespace Zoo.Core.Models
 {
     public abstract class Animal
     {
+        //Nullable reference type, can be null if no special care is needed
+        public string SpecialCare { get; set; } = null;
+
         //Auto-implemented property with only get accessor
         //We can only set the value in the constructor or will be default value (null for reference types, 0 for numeric types, etc)
         public DateTime BirthDate { get; }
@@ -24,15 +27,19 @@ namespace Zoo.Core.Models
         //If we don't set a value during initialization, it will be " ", and can't be changed later
         //We should use backing field if we want to implement custom logic in the setter
         //Required keyword forces to set a value during initialization
-        public string Name { get => _name; 
-            init {
+        public string Name
+        {
+            get => _name;
+            init
+            {
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("The name can't be empty!");
                 }
                 _name = value;
-            
-            } } //Not change after born
+
+            }
+        } //Not change after born
 
         //Auto-implemented properties with restricted access, only accessible within the class and derived classes (no outside access)
         public string Species { get; protected set; }
@@ -130,5 +137,20 @@ namespace Zoo.Core.Models
         }
 
         public abstract void Breath();
+
+        public void ShowCareInstructionsIsNull()
+        {
+            //Checking nullable reference type
+            //Check if the animal requires special care
+            //if SpecialCare is null, print "Standard care", otherwise print the special care instructions
+            Console.WriteLine(SpecialCare is null ? "Standar care" : SpecialCare);
+        }
+
+        public void ShowCareInstructionsWithNullCoalescing()
+        {
+            //Using null-coalescing operator to provide a default value if SpecialCare is null
+            Console.WriteLine(SpecialCare ?? "Standard care");
+
+        }
     }
 }

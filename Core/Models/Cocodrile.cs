@@ -10,9 +10,6 @@ namespace ZooApp.Core.Models
         private const string Prompt = "The 🐊 ";
         private const string Sound = "says: ÑAMMM!";
 
-        public string Weapon { get; set; } = "Nail";
-
-
         public Cocodrile(string name, int age, double weight, string species) : base(name, age, weight, SpeciesName)
         {
         }

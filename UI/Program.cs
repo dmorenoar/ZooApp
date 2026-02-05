@@ -17,6 +17,62 @@ namespace Zoo.UI
 
             Animal[] zoo = new Animal[3];
 
+            /*Null Theory */
+            Lion pepito = new Lion("Pepito", 3, 150.5, null, true);
+
+            //If we try to access to the length of SpecialCare, we will get a NullReferenceException because SpecialCare is null
+            //Console.WriteLine(pepito.SpecialCare.Length);
+
+            //Null-Coalescing Operator (??) - If SpecialCare is null, it will return the string "No special care instructions"
+            Console.WriteLine("Null-Coalescing Operator (??)");
+            string careInstructions = null;
+            Console.WriteLine(careInstructions ?? "No care defined");
+
+            //Null-Coalescing Assignment Operator (??=) - If SpecialCare is null, it will assign the string "No special care instructions" to SpecialCare
+            Console.WriteLine("Null-Coalescing Assignment Operator (??=)");
+            careInstructions ??= "No care defined";
+            Console.WriteLine(careInstructions);
+
+            //Null-Conditional Operator (?.) - If SpecialCare is null, it will return null instead of throwing a NullReferenceException
+            //We can use it to check if SpecialCare is null before trying to access its length
+            //We can resist against NullReferenceException and we can check if the result is null
+            Console.WriteLine("Null-Conditional Operator (?.)");
+            string careInstructionsNotDefined = null;
+            Console.WriteLine(careInstructionsNotDefined?.Length);
+
+
+            pepito.ShowCareInstructionsWithNullCoalescing();
+            pepito.ShowCareInstructionsIsNull();
+
+            pepito.SpecialCare = "Needs extra attention during the winter season.";
+
+            pepito.ShowCareInstructionsWithNullCoalescing();
+            pepito.ShowCareInstructionsIsNull();
+
+            /*Interfaces Theory*/
+
+            /*Interface Default Interface Method*/
+            Console.WriteLine("Need vaccination?");
+            Console.WriteLine(((IVaccinable) pepito).NeedsVaccination);
+
+            //Playing with casting and interfaces to show how we can access to the default implementation of the interface method
+            IVaccinable vaccinablePepito = pepito;
+            Console.WriteLine(vaccinablePepito.NeedsVaccination ? $"Yes, {((Lion)vaccinablePepito).Name} need vaccination" : "No, it's OK");
+
+
+            //TO-DO
+
+            /*Object class*/
+
+
+            /*Equals*/
+
+
+            /*GetHashCode*/
+
+            /*ToString*/
+
+
             try
             {
                 Console.WriteLine(UIConfig.Prompt.PromptWelcome);
@@ -28,13 +84,11 @@ namespace Zoo.UI
                 double weight = Utils.ReadDouble(UIConfig.Input.InputWeight, UIConfig.ValidationError.InvalidInputWeight);
                 bool claws = Utils.ReadBool(UIConfig.Input.InputHasSharpClaws, UIConfig.ValidationError.InvalidInputHasSharpClaws);
 
-                Lion simba = new Lion(name, age, weight, claws);
+                Lion simba = new Lion(name, age, weight,null, claws);
 
                 Console.WriteLine(UIConfig.SuccessMessage.AnimalCreated);
 
                 Lion scar = new Lion("Scar", 5, 190.5);
-
-
 
                 //Console.WriteLine(simba.IsOverWeight);
 
