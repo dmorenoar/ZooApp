@@ -11,7 +11,7 @@ namespace Zoo.Core.Models
         private const string Sound = "says: PUFFF!";
 
         public bool HasTusks { get; set; }
-        public Elephant(string name, int age, double weight, bool hasTusks = true) : base(name, age, weight, SpeciesName)
+        public Elephant(string name, int age, double weight, int neurons = 10, bool hasTusks = true) : base(name, age, weight, SpeciesName, neurons)
         {
             HasTusks = hasTusks;
         }
@@ -30,5 +30,7 @@ namespace Zoo.Core.Models
         {
             return base.ToString() + $", HasTusks: {HasTusks}";
         }
+
+        public override int GetBeatsPerMinute() => 50;
     }
 }

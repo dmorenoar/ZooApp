@@ -7,7 +7,7 @@ namespace Zoo.Core.Models
     public abstract class Animal
     {
         //Nullable reference type, can be null if no special care is needed
-        public string SpecialCare { get; set; } = null;
+        public abstract string? SpecialCare { get; set; }
 
         //Auto-implemented property with only get accessor
         //We can only set the value in the constructor or will be default value (null for reference types, 0 for numeric types, etc)
@@ -22,7 +22,7 @@ namespace Zoo.Core.Models
         //Bool by default is false, but we set it to true
         public bool hasTail { get; set; } = true;
 
-        public readonly string _name;
+        public readonly string? _name;
         //Auto-implemented property with init accessor, can only be set during object initialization
         //If we don't set a value during initialization, it will be " ", and can't be changed later
         //We should use backing field if we want to implement custom logic in the setter
@@ -68,7 +68,7 @@ namespace Zoo.Core.Models
         public string SizeCategory => _weight > 100 ? "Giant" : "Small";
 
         //Backing Field for a property with custom logic
-        private string _nickname;
+        private string? _nickname;
 
         public string Nickname
         {

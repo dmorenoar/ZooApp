@@ -18,7 +18,7 @@ namespace Zoo.UI
             Animal[] zoo = new Animal[3];
 
             /*Null Theory */
-            Lion pepito = new Lion("Pepito", 3, 150.5, null, true);
+            Lion pepito = new Lion("Pepito", 3, 150.5);
 
             //If we try to access to the length of SpecialCare, we will get a NullReferenceException because SpecialCare is null
             //Console.WriteLine(pepito.SpecialCare.Length);
@@ -60,6 +60,9 @@ namespace Zoo.UI
             Console.WriteLine(vaccinablePepito.NeedsVaccination ? $"Yes, {((Lion)vaccinablePepito).Name} need vaccination" : "No, it's OK");
 
 
+            /*Theory composition*/
+            Console.WriteLine($"Beats per minute {pepito.GetBeatsPerMinute()}");
+
             //TO-DO
 
             /*Object class*/
@@ -84,7 +87,13 @@ namespace Zoo.UI
                 double weight = Utils.ReadDouble(UIConfig.Input.InputWeight, UIConfig.ValidationError.InvalidInputWeight);
                 bool claws = Utils.ReadBool(UIConfig.Input.InputHasSharpClaws, UIConfig.ValidationError.InvalidInputHasSharpClaws);
 
-                Lion simba = new Lion(name, age, weight,null, claws);
+
+                Lion simba = new Lion(name, age, weight,20,null, claws);
+
+                //Named Arguments - We can use named arguments to specify the parameters we want to assign,
+                //this is useful when we have many parameters and we want to avoid confusion
+                //We can also use named arguments to assign values to optional parameters and leave the non-optional parameters in their default position
+                Lion simba2 = new Lion(name, age, weight, 20,hasSharpClaws: claws);
 
                 Console.WriteLine(UIConfig.SuccessMessage.AnimalCreated);
 

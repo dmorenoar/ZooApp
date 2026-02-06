@@ -14,17 +14,19 @@ namespace Zoo.Core.Models
         public bool HasSharpClaws { get; set; }
         public bool IsHungry { get; set; } = true;
         public DateTime? LastVaccinateDate { get ; set; }
-  
-        public Lion(string name, int age, double weight, string? SpecialCare = null, bool hasSharpClaws = true): base(name,age,weight, SpeciesName)
+        public override string? SpecialCare { get ; set; }
+
+        public Lion(string name, int age, double weight, int neurons = 10, string? specialCare = null, bool hasSharpClaws = true): base(name,age,weight, SpeciesName, neurons)
         {
             HasSharpClaws = hasSharpClaws;
+            SpecialCare = specialCare;
         }
 
         //The lion can change his species because can access the protected set accessor of Species property from Animal class
         public void ChangeMySpecies(string newSpecies)
         {
             //We can decide some rules for changing species
-            if (newSpecies == "Dog")
+            if (newSpecies.Equals("Dog"))
             {
                 Console.WriteLine("A lion can't be a dog");
                 return;
@@ -60,7 +62,9 @@ namespace Zoo.Core.Models
             Console.WriteLine($"{Prompt} {Name} is vaccinated against {vaccine} right now {LastVaccinateDate}.");
         }
 
-      
+        public override int GetBeatsPerMinute() => 40;
+
+
 
         // Sealed method: The Lion class cannot override the Breath method from Mammal class
         /* public override void Breath()
