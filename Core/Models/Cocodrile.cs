@@ -10,6 +10,8 @@ namespace ZooApp.Core.Models
         private const string Prompt = "The 🐊 ";
         private const string Sound = "says: ÑAMMM!";
 
+        public override string? SpecialCare { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public Cocodrile(string name, int age, double weight, string species) : base(name, age, weight, SpeciesName)
         {
         }

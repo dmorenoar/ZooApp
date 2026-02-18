@@ -11,6 +11,8 @@ namespace Zoo.Core.Models
         private const string Sound = "says: PUFFF!";
 
         public bool HasTusks { get; set; }
+        public override string? SpecialCare { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public Elephant(string name, int age, double weight, int neurons = 10, bool hasTusks = true) : base(name, age, weight, SpeciesName, neurons)
         {
             HasTusks = hasTusks;

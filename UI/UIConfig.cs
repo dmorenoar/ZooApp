@@ -9,7 +9,8 @@ namespace ZooApp.UI
         public static class Prompt
         {
             public const string PromptWelcome = "Welcome to the Zoo Management System";
-            public const string PromptLion = "Welcome to the process to create a Lion";
+            public const string PromptCreateLion = "Welcome to the process to create a Lion";
+            public const string PromptLion = "The 🦁 ";
         }
 
         public static class Input
